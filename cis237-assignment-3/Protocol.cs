@@ -11,17 +11,31 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Constants
          * **************************************************************/
-        private const int COST_PER_LANGUAGE = 0;
+        // Price increase for a single language known
+        private const decimal COST_PER_LANGUAGE_DECIMAL = 0m;
 
         /*****************************************************************
          * Variables / Backing Fields
          * **************************************************************/
-        private int numberOfLanguages;
+        // Number of languages (beyond binary) the droid is programmed with
+        private int _numberOfLanguagesInteger;
+
+        ///*****************************************************************
+        // * Properties
+        // * **************************************************************/
+        //private int NumberOfLanguages { get; set; }
 
         /*****************************************************************
          * Constructors
          * **************************************************************/
-        private Protocol()
+        private Protocol(
+            string passDesignationString,
+            string passMaterialString,
+            string passColorString,
+            int passNumOfLanguagesInteger) : base(
+                passDesignationString,
+                passMaterialString,
+                passColorString)
         {
 
         }
@@ -34,8 +48,9 @@ namespace cis237_assignment_3
 
         }
 
-        private void ToString()
+        public override string ToString()
         {
+            return "";
 
         }
 
