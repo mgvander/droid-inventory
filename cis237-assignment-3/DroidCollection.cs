@@ -31,7 +31,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Methods
          * **************************************************************/
-        private void addDroid(Droid passDroid)
+        public void addDroid(Droid passDroid)
         {
             // Add the droid to the first available index
             droids[droidsIndex] = passDroid;

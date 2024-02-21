@@ -28,7 +28,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Constructors
          * **************************************************************/
-        private Protocol(
+        public Protocol(
             string passDesignationString,
             string passMaterialString,
             string passColorString,
@@ -37,6 +37,8 @@ namespace cis237_assignment_3
                 passMaterialString,
                 passColorString)
         {
+            // Set the number of languages the droid knows
+            this._numberOfLanguagesInteger = passNumOfLanguagesInteger;
 
         }
 

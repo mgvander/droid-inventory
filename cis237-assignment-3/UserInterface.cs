@@ -52,18 +52,18 @@ namespace cis237_assignment_3
         {
             //
             Console.WriteLine();
-            Console.WriteLine("Enter a number from the list of options below.");
-            Console.WriteLine("==============================================");
+            Console.WriteLine("Please enter a number from the list of options below.");
+            Console.WriteLine("=====================================================");
 
         }
 
-        private int DisplayMenuOptions(string passMenu)
+        private int DisplayMenuOptions(string passMenuString)
         {
             // Declare number of options in the menu
             int numberOfMenuOptionsInteger;
 
             //
-            switch (passMenu)
+            switch (passMenuString)
             {
                 case "Main":
                     // Display menu options
@@ -90,6 +90,18 @@ namespace cis237_assignment_3
 
                     break;
 
+                case "Materials":
+                    // Display material options
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+                    Console.WriteLine();
+
+                    // Set the number of Droid Options Menu
+                    numberOfMenuOptionsInteger = 0;
+
+                    break;
+
                 default:
                     //
                     numberOfMenuOptionsInteger = 0;
@@ -105,7 +117,7 @@ namespace cis237_assignment_3
         private void DiplayInputPrompt()
         {
             // Display prompt
-            Console.Write("Please enter here >>> ");
+            Console.Write("Enter here >>> ");
             
         }
 
@@ -160,36 +172,79 @@ namespace cis237_assignment_3
 
         }
 
-        public void GetNewDroidProperties(string passDroidTypeString)
+        public Droid GetNewDroidPropertiesAndCreateNewDroid(string passDroidTypeString)
         {
+            //
+            Droid newDroid = null;
+
             //
             switch (passDroidTypeString)
             {
                 case "1":
                     // Get astromech droid properties
-                    this.GetAstromechProperties();
+                    string[] astromechProperties = this.GetAstromechProperties();
+
+                    //
+                    newDroid = new Astromech(
+                        astromechProperties[0],
+                        astromechProperties[1],
+                        astromechProperties[2],
+                        Convert.ToBoolean(astromechProperties[3]),
+                        Convert.ToBoolean(astromechProperties[4]),
+                        Convert.ToBoolean(astromechProperties[5]),
+                        Convert.ToBoolean(astromechProperties[6]),
+                        Convert.ToInt32(astromechProperties[7]));
 
                     break;
 
                 case "2":
                     // Get janitor droid properties
-                    this.GetJanitorProperties();
+                    string[] janitorProperties = this.GetJanitorProperties();
+
+                    //
+                    newDroid = new Janitor(
+                        janitorProperties[0],
+                        janitorProperties[1],
+                        janitorProperties[2],
+                        Convert.ToBoolean(janitorProperties[3]),
+                        Convert.ToBoolean(janitorProperties[4]),
+                        Convert.ToBoolean(janitorProperties[5]),
+                        Convert.ToBoolean(janitorProperties[6]),
+                        Convert.ToBoolean(janitorProperties[7]));
 
                     break;
 
                 case "3":
                     // Get protocol droid properties
-                    this.GetProtocolProperties();
+                    string[] protocolProperties = this.GetProtocolProperties();
+
+                    //
+                    newDroid = new Protocol(
+                        protocolProperties[0],
+                        protocolProperties[1],
+                        protocolProperties[2],
+                        Convert.ToInt32(protocolProperties[3]));
 
                     break;
 
                 case "4":
                     // Get utility droid properties
-                    this.GetUtilityProperties();
+                    string[] utilityProperties = this.GetUtilityProperties();
 
-                    break;
+                    //
+                    newDroid = new Utility(
+                        utilityProperties[0],
+                        utilityProperties[1],
+                        utilityProperties[2],
+                        Convert.ToBoolean(utilityProperties[3]),
+                        Convert.ToBoolean(utilityProperties[4]),
+                        Convert.ToBoolean(utilityProperties[5]));
+
+                    break;                
 
             }
+
+            return newDroid;
 
         }
 

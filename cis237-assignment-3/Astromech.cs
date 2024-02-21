@@ -27,7 +27,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Constructors
          * **************************************************************/
-        private Astromech(
+        public Astromech(
             string passDesignationString,
             string passMaterialString,
             string passColorString,
@@ -43,6 +43,11 @@ namespace cis237_assignment_3
                 passDataProbeBoolean,
                 passScannerBoolean)
         {
+            // Set if the droid is equipped with a navigation computer interface
+            this._navigationBoolean = passNavigationBoolean;
+
+            // Set the number of ships the droid can pilot
+            this._numberOfShipsInteger = passShipsInteger;
 
         }
 

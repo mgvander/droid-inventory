@@ -136,4 +136,4 @@ None
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-None
+Need to implement a set list of droid materials for the user to select from.

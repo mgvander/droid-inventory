@@ -31,7 +31,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Constructors
          * **************************************************************/
-        protected Utility(
+        public Utility(
             string passDesignationString,
             string passMaterialString,
             string passColorString,
@@ -42,6 +42,14 @@ namespace cis237_assignment_3
                 passMaterialString,
                 passColorString)
         {
+            // Set if the droid is equipped with a toolbox
+            this._toolBoxBoolean = passToolsBoolean;
+
+            // Set if the droid is equipped with a computer connection
+            this._computerConnectionBoolean = passComputerJackBoolean;
+
+            // Set if the droid is equipped with a scanner
+            this._scannerBoolean = passScannerBoolean;
 
         }
 

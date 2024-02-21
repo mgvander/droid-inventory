@@ -24,16 +24,7 @@ namespace cis237_assignment_3
          * Properties
          * **************************************************************/
         // Total cost of a droid
-        public decimal TotalCost { get; set; }
-
-        // Serial designation of the driod
-        private string SerialDesignation { get; set; }
-
-        // Hull material of a droid
-        private string Material { get; set; }
-
-        // Hull coloring
-        private string Color { get; set; }
+        public decimal TotalCost { get; set; }        
 
         /*****************************************************************
          * Constructors

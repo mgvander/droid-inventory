@@ -50,7 +50,7 @@ namespace cis237_assignment_3
                         string droidChoiceString = ui.DiplayMenuAndGetInput("Droids");
 
                         //
-                        ui.GetNewDroidProperties(droidChoiceString);
+                        droidCollection.addDroid(ui.GetNewDroidPropertiesAndCreateNewDroid(droidChoiceString));
 
                         break;
 

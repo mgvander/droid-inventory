@@ -27,7 +27,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Constructors
          * **************************************************************/
-        private Janitor(
+        public Janitor(
             string passDesignationString,
             string passMaterialString,
             string passColorString,
