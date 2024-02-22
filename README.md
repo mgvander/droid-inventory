@@ -136,4 +136,7 @@ None
 
 ## Known Problems, Issues, And/Or Errors in the Program
 
-Need to implement a set list of droid materials for the user to select from.
+An array of droid materials is useful for creating a menu of said materials in the UserInterface class. This array is also needed to calculate the price of whatever
+material is chosen by the user. The most logical place for qualities pertaining to all droid models is the Droid parent class. Because the Droid parent class is absract,
+the only way for the U.I. to gain access to the list of material is to create an instance of one of Droid's derived classes and have a property of the Droid class return
+the array. This does not seem effecient and I am concerned about a making the Droid class vulnerable.
