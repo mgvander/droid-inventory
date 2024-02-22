@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class Janitor : Utility
+    class Janitor : Utility
     {
         /*****************************************************************
          * Constants
          * **************************************************************/
+        // Type of droid model
+        private const string MODELTYPE = "Janitor";
+
         // Price increase if the droid is equipped with a broom
         private const decimal COST_OF_BROOM_DECIMAL = 0m;
         // Price increase if the droid is equipped with a vacuum
@@ -43,20 +46,37 @@ namespace cis237_assignment_3
                 passComputerJackBoolean,
                 passScannerBoolean)
         {
+            // Set if the droid is equipped with a broom
+            this._broomBoolean = passBroomBoolean;
 
+            // Set if the droid is equipped with a vacuum
+            this._vacuumBoolean = passVacuumBoolean;
+
+        }
+
+        /*****************************************************************
+         * Properties
+         * **************************************************************/
+        //
+        public override string Model
+        {
+            get { return MODELTYPE; }
         }
 
         /*****************************************************************
          * Methods
          * **************************************************************/
-        private void CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
 
         }
 
         public override string ToString()
         {
-            return "";
+            //
+            return $"{base.ToString()}" +
+                "Broom:".PadRight(25) + $"{this._broomBoolean}" + Environment.NewLine +
+                "Vacuum:".PadRight(25) + $"{this._vacuumBoolean}" + Environment.NewLine;
 
         }
 

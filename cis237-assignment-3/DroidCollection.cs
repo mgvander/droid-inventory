@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class DroidCollection
+    public class DroidCollection
     {
+        /*****************************************************************
+         * Variables
+         * **************************************************************/
         // Declare array for holding the list of droids
         private Droid[] droids;
 
@@ -31,7 +34,7 @@ namespace cis237_assignment_3
         /*****************************************************************
          * Methods
          * **************************************************************/
-        public void addDroid(Droid passDroid)
+        public void AddDroid(Droid passDroid)
         {
             // Add the droid to the first available index
             droids[droidsIndex] = passDroid;
@@ -43,7 +46,29 @@ namespace cis237_assignment_3
 
         public override string ToString()
         {
-            return "";
+            //
+            string outputString = "";
+
+            //
+            foreach (Droid droid in droids)
+            {
+                if (droid != null)
+                {
+                    //
+                    outputString += $" { droid.Model.PadLeft(40, '=')}" + Environment.NewLine;
+
+                    //
+                    outputString += droid.ToString();
+
+                    //
+                    //outputString += droid.CalculateTotalCost();
+
+                }
+
+            }
+
+            //
+            return outputString;
 
         }
 

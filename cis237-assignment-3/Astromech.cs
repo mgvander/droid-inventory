@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class Astromech : Utility
+    class Astromech : Utility
     {
         /*****************************************************************
          * Constants
          * **************************************************************/
+        // Type of droid model
+        private const string MODELTYPE = "Astromech";
+
         // Price increase if the droid can operate a navi computer
         private const decimal COST_OF_NAVIGATION_DECIMAL = 0m;
         // Price increase for knowing how to operate a single ship type
@@ -52,16 +55,28 @@ namespace cis237_assignment_3
         }
 
         /*****************************************************************
+         * Properties
+         * **************************************************************/
+        //
+        public override string Model
+        {
+            get { return MODELTYPE; }
+        }
+
+        /*****************************************************************
          * Methods
          * **************************************************************/
-        private void CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
 
         }
 
         public override string ToString()
         {
-            return "";
+            //
+            return $"{base.ToString()}" +
+                "Navigation:".PadRight(25) + $"{this._navigationBoolean}" + Environment.NewLine +
+                "Number of Ships:".PadRight(25) + $"{this._numberOfShipsInteger}" + Environment.NewLine;
 
         }
 

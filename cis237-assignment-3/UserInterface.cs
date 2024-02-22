@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -7,8 +8,24 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class UserInterface
+    public class UserInterface
     {
+        /*****************************************************************
+         * Constants
+         * **************************************************************/
+        //
+        private string[] mainMenuOptions = new string[] { 
+            "Add a New Droid",
+            "Display Inventory",
+            "Exit the Program" };
+
+        //
+        private string[] droidMenuOptions = new string[] {
+            "Astromech",
+            "Janitor",
+            "Protocol",
+            "Utility" };        
+
         /*****************************************************************
          * Methods
          * **************************************************************/
@@ -19,8 +36,7 @@ namespace cis237_assignment_3
             Console.WriteLine("M'um m'aloo.");
             Console.WriteLine("Translating to: GALACTIC BASIC");
             Console.WriteLine("Greetings, Hello.");
-            Console.WriteLine("Welcome to the droid cataloging program.");
-            Console.WriteLine();
+            Console.WriteLine("Welcome to the droid cataloging program.");            
 
         }
 
@@ -51,11 +67,12 @@ namespace cis237_assignment_3
         private void DisplayMenuHeader()
         {
             //
-            Console.WriteLine();
             Console.WriteLine("Please enter a number from the list of options below.");
             Console.WriteLine("=====================================================");
 
         }
+
+         
 
         private int DisplayMenuOptions(string passMenuString)
         {
@@ -66,39 +83,29 @@ namespace cis237_assignment_3
             switch (passMenuString)
             {
                 case "Main":
-                    // Display menu options
-                    Console.WriteLine("1. Add a New Droid");
-                    Console.WriteLine("2. Display Inventory");
-                    Console.WriteLine("3. Exit the Program");
-                    Console.WriteLine();
-
+                    // Display menu options from passed in array
                     // Set the number of options in the Main Menu
-                    numberOfMenuOptionsInteger = 3;
+                    numberOfMenuOptionsInteger = this.DisplayMenuOptions(mainMenuOptions);
 
                     break;
 
                 case "Droids":
-                    // Display menu options
-                    Console.WriteLine("1. Astromech");
-                    Console.WriteLine("2. Janitor");
-                    Console.WriteLine("3. Protocol");
-                    Console.WriteLine("4. Utility");
-                    Console.WriteLine();
-
+                    // Display menu options from passed in array
                     // Set the number of Droid Options Menu
-                    numberOfMenuOptionsInteger = 4;
+                    numberOfMenuOptionsInteger = this.DisplayMenuOptions(droidMenuOptions);
 
                     break;
 
                 case "Materials":
-                    // Display material options
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
-                    Console.WriteLine();
+                    // Create an empty protocol droid to gain access to the droid class properties
+                    Protocol fakeDroid = new Protocol("", "", "", 0);
 
+                    // Set the variable to the array of droid hull materials
+                    string[] materialMenuOptions = fakeDroid.Materials;
+
+                    // Display material options from passed in array
                     // Set the number of Droid Options Menu
-                    numberOfMenuOptionsInteger = 0;
+                    numberOfMenuOptionsInteger = this.DisplayMenuOptions(materialMenuOptions);
 
                     break;
 
@@ -112,6 +119,26 @@ namespace cis237_assignment_3
 
             return numberOfMenuOptionsInteger;
 
+        }
+
+        protected int DisplayMenuOptions(string[] passMenuOptions)
+        {
+            //
+            int counterInteger = 0;
+
+            //
+            foreach (string option in passMenuOptions)
+            {
+                //
+                ++counterInteger;
+
+                //
+                Console.WriteLine($"{counterInteger}. {option}");
+
+            }
+            
+            //
+            return passMenuOptions.Length;
         }
 
         private void DiplayInputPrompt()
@@ -250,9 +277,17 @@ namespace cis237_assignment_3
 
         private string[] GetDroidProperties()
         {
+            // Create an empty protocol droid to gain access to the droid class properties
+            Protocol fakeDroid = new Protocol("", "", "", 0);
+
+            // Set the variable to the array of droid hull materials
+            string[] materialMenuOptions = fakeDroid.Materials;
+            
             //
             string nameString = this.GetStringProperty("Serial Designation");
-            string materialString = this.GetStringProperty("Hull Material");
+            this.DisplayStringPrompt("Hull Material");            
+            string materialChoicString = this.DiplayMenuAndGetInput("Materials");
+            string materialString = materialMenuOptions[Convert.ToInt32(materialChoicString) - 1];
             string colorString = this.GetStringProperty("Hull Color");
 
             //
@@ -332,7 +367,7 @@ namespace cis237_assignment_3
                 broomString,
                 vacuumString };
 
-        }
+        }        
 
         private string GetBoolProperty(string passPropertyString)
         {
@@ -346,7 +381,7 @@ namespace cis237_assignment_3
             do
             {
                 //
-                Console.WriteLine($"Is the droid equipped with {passPropertyString}? (Y/N)");
+                this.DisplayBoolPrompt(passPropertyString);
 
                 // Call DiplayInputPrompt() method
                 this.DiplayInputPrompt();
@@ -388,7 +423,7 @@ namespace cis237_assignment_3
             do
             {
                 //
-                Console.WriteLine($"How many {passPropertyString} is the droid programmed with?");
+                this.DisplayIntegerPrompt(passPropertyString);
 
                 // Call DiplayInputPrompt() method
                 this.DiplayInputPrompt();
@@ -429,7 +464,7 @@ namespace cis237_assignment_3
             do
             {
                 //
-                Console.WriteLine($"What is the droid's {passPropertyString}?");
+                this.DisplayStringPrompt(passPropertyString);
 
                 // Call DiplayInputPrompt() method
                 this.DiplayInputPrompt();
@@ -451,6 +486,27 @@ namespace cis237_assignment_3
             //
             return inputString;
 
+        }
+
+        private void DisplayBoolPrompt(string passSubjectString)
+        {
+            //
+            Console.WriteLine($"Is the droid equipped with {passSubjectString}? (Y/N)");
+            
+        }
+
+        private void DisplayIntegerPrompt(string passSubjectString)
+        {
+            //
+            Console.WriteLine($"How many {passSubjectString} is the droid programmed with?");
+            
+        }
+
+        private void DisplayStringPrompt(string passSubjectString)
+        {
+            //
+            Console.WriteLine($"What is the droid's {passSubjectString}?");
+            
         }
 
         private void DisplayMenuInputErrorMessage(string passUserInputString)

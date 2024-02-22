@@ -6,11 +6,14 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class Utility : Droid
+    class Utility : Droid
     {
         /*****************************************************************
          * Constants
          * **************************************************************/
+        // Type of droid model
+        private const string MODELTYPE = "Utility";
+
         // Price increase if the droid is equipped with a tool box
         private const decimal COST_OF_TOOL_BOX_DECIMAL = 0m;
         // Price increase if the droid is equipped with a data probe
@@ -54,16 +57,29 @@ namespace cis237_assignment_3
         }
 
         /*****************************************************************
+         * Properties
+         * **************************************************************/
+        //
+        public override string Model
+        {
+            get { return MODELTYPE; }
+        }
+
+        /*****************************************************************
          * Methods
          * **************************************************************/
-        private void CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
 
         }
 
         public override string ToString()
         {
-            return "";
+            //
+            return $"{base.ToString()}" +
+                "Tool Box:".PadRight(25) + $"{this._toolBoxBoolean}" + Environment.NewLine +
+                "Data Probe:".PadRight(25) + $"{this._computerConnectionBoolean}" + Environment.NewLine +
+                "Scanner Array:".PadRight(25) + $"{this._scannerBoolean}" + Environment.NewLine;
 
         }
 

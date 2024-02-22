@@ -6,24 +6,22 @@ using System.Threading.Tasks;
 
 namespace cis237_assignment_3
 {
-    internal class Protocol : Droid
+    class Protocol : Droid
     {
         /*****************************************************************
          * Constants
          * **************************************************************/
+        // Type of droid model
+        private const string MODELTYPE = "Protocol";
+
         // Price increase for a single language known
-        private const decimal COST_PER_LANGUAGE_DECIMAL = 0m;
+        private const decimal COST_PER_LANGUAGE_DECIMAL = 0.1m;
 
         /*****************************************************************
          * Variables / Backing Fields
          * **************************************************************/
         // Number of languages (beyond binary) the droid is programmed with
         private int _numberOfLanguagesInteger;
-
-        ///*****************************************************************
-        // * Properties
-        // * **************************************************************/
-        //private int NumberOfLanguages { get; set; }
 
         /*****************************************************************
          * Constructors
@@ -43,19 +41,30 @@ namespace cis237_assignment_3
         }
 
         /*****************************************************************
+         * Properties
+         * **************************************************************/
+        //
+        public override string Model
+        {
+            get { return MODELTYPE; }
+        }
+
+        /*****************************************************************
          * Methods
          * **************************************************************/
-        private void CalculateTotalCost()
+        public override void CalculateTotalCost()
         {
-
+            
         }
 
         public override string ToString()
         {
-            return "";
+            //
+            return $"{base.ToString()}" +
+               "Number of Languages:".PadRight(25) + $"{this._numberOfLanguagesInteger}" + Environment.NewLine;
 
         }
-
+        
     }
 
 }
