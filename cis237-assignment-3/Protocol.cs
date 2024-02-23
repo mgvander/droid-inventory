@@ -54,14 +54,22 @@ namespace cis237_assignment_3
          * **************************************************************/
         public override void CalculateTotalCost()
         {
-            
+            //
+            base.CalculateTotalCost();
+
+            //
+            base.TotalCost += this.CalculateSoftwareCost(_numberOfLanguagesInteger, COST_PER_LANGUAGE_DECIMAL);
+
         }
 
         public override string ToString()
         {
             //
+            decimal totalLanguagesCostDecimal = this.CalculateSoftwareCost(_numberOfLanguagesInteger, COST_PER_LANGUAGE_DECIMAL);
+
+            //
             return $"{base.ToString()}" +
-               "Number of Languages:".PadRight(25) + $"{this._numberOfLanguagesInteger}" + Environment.NewLine;
+               "Number of Languages:".PadRight(25) + $"{this._numberOfLanguagesInteger}".PadRight(14) + $"+ {totalLanguagesCostDecimal} Galactic Credits" + Environment.NewLine;
 
         }
         

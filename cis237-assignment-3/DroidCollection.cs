@@ -55,13 +55,13 @@ namespace cis237_assignment_3
                 if (droid != null)
                 {
                     //
-                    outputString += $" { droid.Model.PadLeft(40, '=')}" + Environment.NewLine;
+                    outputString += " ".PadLeft(39, '=') + $"{droid.Model} Droid" + Environment.NewLine;
 
                     //
-                    outputString += droid.ToString();
+                    outputString += droid.ToString();                    
 
                     //
-                    //outputString += droid.CalculateTotalCost();
+                    outputString += " ".PadLeft(39, '=') + $"{droid.TotalCost} " + "Galactic Credits" + Environment.NewLine;
 
                 }
 

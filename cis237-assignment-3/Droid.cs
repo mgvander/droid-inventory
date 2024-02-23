@@ -15,7 +15,7 @@ namespace cis237_assignment_3
         private const int NUMBER_OF_MATERIALS = 9;
 
         //
-        private string[] materials = new string[NUMBER_OF_MATERIALS] {
+        private string[] _materials = new string[NUMBER_OF_MATERIALS] {
             "Chromium",
             "Cortosis",
             "Dolovite",
@@ -27,7 +27,7 @@ namespace cis237_assignment_3
             "Silver" };
 
         //
-        private decimal[] materialPrices = new decimal[NUMBER_OF_MATERIALS] {
+        private decimal[] _materialPrices = new decimal[NUMBER_OF_MATERIALS] {
             11_000m,
             12_000m,
             9_000m,
@@ -71,7 +71,7 @@ namespace cis237_assignment_3
         public decimal TotalCost
         {
             get { return _totalCostDecimal; }
-            set { }
+            set { _totalCostDecimal = value; }
         }
 
         //
@@ -80,7 +80,19 @@ namespace cis237_assignment_3
         //
         public string[] Materials
         {
-            get { return this.materials; }
+            get { return this._materials; }
+        }
+
+        //
+        public decimal[] MaterialPrices
+        {
+            get { return this._materialPrices; }
+        }
+
+        //
+        public string Material
+        {
+            get { return _materialString; }
         }
         
         /*****************************************************************
@@ -90,40 +102,74 @@ namespace cis237_assignment_3
         public virtual void CalculateTotalCost()
         {
             //
-            int materialIndexInteger = 0;
-
-            //
-            if (_materialString != null)
-            {
-                for (int indexInteger = 0; indexInteger < materials.Length; ++indexInteger)
-                {
-                    if (string.Equals(materials[indexInteger], _materialString))
-                    {
-                        //
-                        materialIndexInteger = indexInteger;
-
-                        //
-                        indexInteger = materials.Length;
-
-                    }
-                    
-                }
-
-            }
-
-            //
-            this._totalCostDecimal = materialPrices[materialIndexInteger];
+            this.TotalCost += this.CalculateMaterialCost();
 
         }
 
         public override string ToString()
         {
             //
+            decimal totalMaterialCost = this.CalculateMaterialCost();
+
+            //
             return "Serial Designation:".PadRight(25) + $"{this._serialDesignationString}" + Environment.NewLine +
-                "Hull Material:".PadRight(25) + $"{this._materialString}" + Environment.NewLine +
+                "Hull Material:".PadRight(25) + $"{this._materialString}".PadRight(14) + $"+ {totalMaterialCost} Galactic Credits" + Environment.NewLine +
                 "Hull Color:".PadRight(25) + $"{this._colorString}" + Environment.NewLine;
 
-        }        
+        }
+
+        protected decimal CalculateMaterialCost()
+        {
+            //
+            int materialIndexInteger = 0;
+
+            //
+            if (this.Material != null)
+            {
+                //
+                for (int indexInteger = 0; indexInteger < this.Materials.Length; ++indexInteger)
+                {
+                    //
+                    if (string.Equals(this.Materials[indexInteger], this.Material))
+                    {
+                        //
+                        materialIndexInteger = indexInteger;
+
+                        //
+                        indexInteger = this.Materials.Length;
+
+                    }
+
+                }
+
+            }
+
+            return this.MaterialPrices[materialIndexInteger];
+
+        }
+
+        protected decimal CalculateEquipmentCost(bool passEquippedBoolean, decimal passPriceDecimal)
+        {
+            
+            //
+            if (passEquippedBoolean)
+            {
+                //
+                return passPriceDecimal;
+
+            }
+           
+            //
+            return 0;           
+
+        }
+
+        protected decimal CalculateSoftwareCost(int passSoftwaresInteger, decimal passPriceDecimal)
+        {
+            //
+            return passSoftwaresInteger * passPriceDecimal;
+
+        }
 
     }
 

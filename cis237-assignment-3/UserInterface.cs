@@ -271,6 +271,10 @@ namespace cis237_assignment_3
 
             }
 
+            //
+            newDroid.CalculateTotalCost();
+
+            //
             return newDroid;
 
         }

@@ -15,9 +15,9 @@ namespace cis237_assignment_3
         private const string MODELTYPE = "Janitor";
 
         // Price increase if the droid is equipped with a broom
-        private const decimal COST_OF_BROOM_DECIMAL = 0m;
+        private const decimal COST_OF_BROOM_DECIMAL = 50m;
         // Price increase if the droid is equipped with a vacuum
-        private const decimal COST_OF_VACUUM_DECIMAL = 0m;
+        private const decimal COST_OF_VACUUM_DECIMAL = 150m;
 
         /*****************************************************************
          * Variables / Backing Fields
@@ -68,17 +68,29 @@ namespace cis237_assignment_3
          * **************************************************************/
         public override void CalculateTotalCost()
         {
+            //
+            base.CalculateTotalCost();
+
+            //
+            base.TotalCost += this.CalculateEquipmentCost(_broomBoolean, COST_OF_BROOM_DECIMAL) +
+                this.CalculateEquipmentCost(_vacuumBoolean, COST_OF_VACUUM_DECIMAL);
 
         }
 
         public override string ToString()
         {
             //
-            return $"{base.ToString()}" +
-                "Broom:".PadRight(25) + $"{this._broomBoolean}" + Environment.NewLine +
-                "Vacuum:".PadRight(25) + $"{this._vacuumBoolean}" + Environment.NewLine;
+            decimal totalBroomCostDecimal = this.CalculateEquipmentCost(_broomBoolean, COST_OF_BROOM_DECIMAL);
 
-        }
+            //
+            decimal totalVacuumCostDecimal = this.CalculateEquipmentCost(_vacuumBoolean, COST_OF_VACUUM_DECIMAL);
+
+            //
+            return $"{base.ToString()}" +
+                "Broom:".PadRight(25) + $"{this._broomBoolean}".PadRight(14) + $"+ {totalBroomCostDecimal} Galactic Credits" + Environment.NewLine +
+                "Vacuum:".PadRight(25) + $"{this._vacuumBoolean}".PadRight(14) + $"+ {totalVacuumCostDecimal} Galactic Credits" + Environment.NewLine;
+
+        }        
 
     }
 

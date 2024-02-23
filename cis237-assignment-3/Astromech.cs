@@ -15,9 +15,9 @@ namespace cis237_assignment_3
         private const string MODELTYPE = "Astromech";
 
         // Price increase if the droid can operate a navi computer
-        private const decimal COST_OF_NAVIGATION_DECIMAL = 0m;
+        private const decimal COST_OF_NAVIGATION_DECIMAL = 500m;
         // Price increase for knowing how to operate a single ship type
-        private const decimal COST_PER_SHIP_DECIMAL = 0m;
+        private const decimal COST_PER_SHIP_DECIMAL = 2m;
 
         /*****************************************************************
          * Variables / Backing Fields
@@ -68,15 +68,27 @@ namespace cis237_assignment_3
          * **************************************************************/
         public override void CalculateTotalCost()
         {
+            //
+            base.CalculateTotalCost();
+
+            //
+            base.TotalCost += this.CalculateEquipmentCost(_navigationBoolean, COST_OF_NAVIGATION_DECIMAL) +
+                this.CalculateSoftwareCost(_numberOfShipsInteger, COST_PER_SHIP_DECIMAL);
 
         }
 
         public override string ToString()
         {
             //
+            decimal totalNavigationCostDecimal = this.CalculateEquipmentCost(_navigationBoolean, COST_OF_NAVIGATION_DECIMAL);
+
+            //
+            decimal totalShipsCostDecimal = this.CalculateSoftwareCost(_numberOfShipsInteger, COST_PER_SHIP_DECIMAL);
+
+            //
             return $"{base.ToString()}" +
-                "Navigation:".PadRight(25) + $"{this._navigationBoolean}" + Environment.NewLine +
-                "Number of Ships:".PadRight(25) + $"{this._numberOfShipsInteger}" + Environment.NewLine;
+                "Navigation:".PadRight(25) + $"{this._navigationBoolean}".PadRight(14) + $"+ {totalNavigationCostDecimal} Galactic Credits" + Environment.NewLine +
+                "Number of Ships:".PadRight(25) + $"{this._numberOfShipsInteger}".PadRight(14) + $"+ {totalShipsCostDecimal} Galactic Credits" + Environment.NewLine;
 
         }
 
