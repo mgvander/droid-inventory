@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// Author: Michael VanderMyde
+/// Course: CIS-237
+/// Assignment 3
+
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -31,12 +35,13 @@ namespace cis237_assignment_3
          * **************************************************************/
         public void DisplayProgramGreeting()
         {
-            // Program Greeting
+            // Program greeting message
             Console.WriteLine("Compiling Program...");
             Console.WriteLine("M'um m'aloo.");
             Console.WriteLine("Translating to: GALACTIC BASIC");
             Console.WriteLine("Greetings, Hello.");
-            Console.WriteLine("Welcome to the droid cataloging program.");            
+            Console.WriteLine("Welcome to the droid cataloging program.");
+            Console.WriteLine();
 
         }
 
@@ -45,21 +50,18 @@ namespace cis237_assignment_3
             // Display Menu
             this.DisplayMenuHeader();
             int numberOfMenuOptionsInteger = this.DisplayMenuOptions(passMenuString);
-            
-            // Call DiplayInputPrompt() method
-            this.DiplayInputPrompt();
-            // Call GetUserInput() method
-            string choiceString = this.GetUserInput();
 
+            // Call DiplayInputPromptAndGetUserInput() method
+            string choiceString = this.DiplayInputPromptAndGetUserInput();
+
+            //
             while (!ValidOption(choiceString, numberOfMenuOptionsInteger))
             {
-                // Call DiplayInputPrompt() method
-                this.DiplayInputPrompt();
-                // Call GetUserInput() method
-                choiceString = this.GetUserInput();
-
+                // Call DiplayInputPromptAndGetUserInput() method
+                choiceString = this.DiplayInputPromptAndGetUserInput();
+                
             }
-
+            
             return choiceString;
 
         }
@@ -136,16 +138,25 @@ namespace cis237_assignment_3
                 Console.WriteLine($"{counterInteger}. {option}");
 
             }
-            
+
+            //
+            Console.WriteLine();
+
             //
             return passMenuOptions.Length;
         }
 
-        private void DiplayInputPrompt()
+        private string DiplayInputPromptAndGetUserInput()
         {
             // Display prompt
             Console.Write("Enter here >>> ");
-            
+
+            //
+            string userInputString = Console.ReadLine();
+            Console.WriteLine();
+
+            return userInputString;
+
         }
 
         private string GetUserInput()
@@ -190,7 +201,9 @@ namespace cis237_assignment_3
 
                 // Display exception message
                 Console.WriteLine(e.Message);
-                Console.WriteLine();
+
+                //
+                this.DisplayMenuInputErrorMessage(passChoiceString);                
 
             }
 
@@ -387,12 +400,9 @@ namespace cis237_assignment_3
                 //
                 this.DisplayBoolPrompt(passPropertyString);
 
-                // Call DiplayInputPrompt() method
-                this.DiplayInputPrompt();
-
-                // Call GetUserInput() method
-                string inputString = this.GetUserInput();
-
+                // Call DiplayInputPromptAndGetUserInput() method
+                string inputString = this.DiplayInputPromptAndGetUserInput();
+                
                 if (inputString.ToLower() == "y" || inputString.ToLower() == "n")
                 {
                     // If the input is "y" or "Y" then set the value to true
@@ -403,8 +413,15 @@ namespace cis237_assignment_3
                     validBoolean = true;
 
                 }
+                //
+                else
+                {
+                    //
+                    DisplayInvalidInputErrorMessage(inputString);
+                    
+                }
 
-            } while (!validBoolean);
+            } while (!validBoolean); // 
 
             //
             return booleanValueBoolean.ToString();
@@ -429,12 +446,9 @@ namespace cis237_assignment_3
                 //
                 this.DisplayIntegerPrompt(passPropertyString);
 
-                // Call DiplayInputPrompt() method
-                this.DiplayInputPrompt();
-
-                // Call GetUserInput() method
-                inputString = this.GetUserInput();
-
+                // Call DiplayInputPromptAndGetUserInput() method
+                inputString = this.DiplayInputPromptAndGetUserInput();
+                
                 //
                 try
                 {
@@ -445,11 +459,18 @@ namespace cis237_assignment_3
                     validBoolean = true;
 
                 }
-                catch
+                //
+                catch(Exception e)
                 {
+                    // Display exception message
+                    Console.WriteLine(e.Message);
+
+                    //
+                    DisplayInvalidInputErrorMessage(inputString);
+                    
                 }
 
-            } while (!validBoolean);
+            } while (!validBoolean); //
 
             //
             return inputString;
@@ -470,11 +491,8 @@ namespace cis237_assignment_3
                 //
                 this.DisplayStringPrompt(passPropertyString);
 
-                // Call DiplayInputPrompt() method
-                this.DiplayInputPrompt();
-
-                // Call GetUserInput() method
-                inputString = this.GetUserInput();
+                // Call DiplayInputPromptAndGetUserInput() method
+                inputString = this.DiplayInputPromptAndGetUserInput();
 
                 //
                 if (!String.IsNullOrWhiteSpace(inputString))
@@ -483,8 +501,14 @@ namespace cis237_assignment_3
                     validBoolean = true;
 
                 }
+                else
+                {
+                    //
+                    DisplayInvalidInputErrorMessage(inputString);
+                    
+                }                
 
-            } while (!validBoolean);
+            } while (!validBoolean); //
             
 
             //
@@ -496,6 +520,7 @@ namespace cis237_assignment_3
         {
             //
             Console.WriteLine($"Is the droid equipped with {passSubjectString}? (Y/N)");
+            Console.WriteLine();
             
         }
 
@@ -503,20 +528,31 @@ namespace cis237_assignment_3
         {
             //
             Console.WriteLine($"How many {passSubjectString} is the droid programmed with?");
-            
+            Console.WriteLine();
+
         }
 
         private void DisplayStringPrompt(string passSubjectString)
         {
             //
             Console.WriteLine($"What is the droid's {passSubjectString}?");
-            
+            Console.WriteLine();
+
         }
 
         private void DisplayMenuInputErrorMessage(string passUserInputString)
         {
             //
             Console.WriteLine($"{passUserInputString} is not a number from the list of options.");
+            Console.WriteLine("Please try again.");
+            Console.WriteLine();
+
+        }
+
+        private void DisplayInvalidInputErrorMessage(string passUserInputString)
+        {
+            Console.WriteLine($"{passUserInputString} is not a valid input.");
+            Console.WriteLine("Please try again.");
             Console.WriteLine();
 
         }

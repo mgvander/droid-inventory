@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// Author: Michael VanderMyde
+/// Course: CIS-237
+/// Assignment 3
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,10 +62,11 @@ namespace cis237_assignment_3
                     outputString += " ".PadLeft(39, '=') + $"{droid.Model} Droid" + Environment.NewLine;
 
                     //
-                    outputString += droid.ToString();                    
+                    outputString += droid.ToString();
 
                     //
-                    outputString += " ".PadLeft(39, '=') + $"{droid.TotalCost} " + "Galactic Credits" + Environment.NewLine;
+                    outputString += " ".PadLeft(39, '=') + $"{droid.TotalCost} " + "Galactic Credits" + Environment.NewLine +
+                        Environment.NewLine;
 
                 }
 

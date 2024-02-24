@@ -1,4 +1,8 @@
-﻿using System;
+﻿/// Author: Michael VanderMyde
+/// Course: CIS-237
+/// Assignment 3
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
