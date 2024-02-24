@@ -76,7 +76,7 @@ namespace cis237_assignment_3
             base.CalculateTotalCost();
 
             //
-            base.TotalCost += this.CalculateEquipmentCost(_navigationBoolean, COST_OF_NAVIGATION_DECIMAL) +
+            this.TotalCost += this.CalculateEquipmentCost(_navigationBoolean, COST_OF_NAVIGATION_DECIMAL) +
                 this.CalculateSoftwareCost(_numberOfShipsInteger, COST_PER_SHIP_DECIMAL);
 
         }

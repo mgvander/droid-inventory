@@ -143,14 +143,15 @@ namespace cis237_assignment_3
                 // Iterate through the length of the materials array
                 for (int indexInteger = 0; indexInteger < this.Materials.Length; ++indexInteger)
                 {
-                    //
+                    // Checks if the element being looked at is equal to the droid's hull material
                     if (string.Equals(this.Materials[indexInteger], this.Material))
                     {
-                        //
-                        int materialIndexInteger = indexInteger;
+                        // Set the index from the array of prices, equal to the index the material was
+                        // found at
+                        int materialPriceIndexInteger = indexInteger;
 
-                        //
-                        return this.MaterialPrices[materialIndexInteger];
+                        // Return the price from material price array
+                        return this.MaterialPrices[materialPriceIndexInteger];
 
                     }
 
@@ -158,30 +159,42 @@ namespace cis237_assignment_3
 
             }
             
-            //
+            // No material means 0 price
             return 0;
 
         }
 
+        /// <summary>
+        /// Return the cost of the equipment if doid has it.
+        /// </summary>
+        /// <param name="passEquippedBoolean"> Does the droid have the equipment? </param>
+        /// <param name="passPriceDecimal"> Price of the equipment </param>
+        /// <returns> Either the price of the equipment or 0 </returns>
         protected decimal CalculateEquipmentCost(bool passEquippedBoolean, decimal passPriceDecimal)
         {
             
-            //
+            // Check if the droid is equipped
             if (passEquippedBoolean)
             {
-                //
+                // Return the price of the equipment
                 return passPriceDecimal;
 
             }
            
-            //
+            // The droid was not equipped so the price is 0
             return 0;           
 
         }
 
+        /// <summary>
+        /// Multiply the price of one software varient by the number of varient is knows
+        /// </summary>
+        /// <param name="passSoftwaresInteger"> Number of software varient known </param>
+        /// <param name="passPriceDecimal"> Price of one software varient </param>
+        /// <returns> Product value of the droids software </returns>
         protected decimal CalculateSoftwareCost(int passSoftwaresInteger, decimal passPriceDecimal)
         {
-            //
+            // Return the product value of the price
             return passSoftwaresInteger * passPriceDecimal;
 
         }

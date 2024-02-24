@@ -78,7 +78,7 @@ namespace cis237_assignment_3
             base.CalculateTotalCost();
 
             //
-            base.TotalCost += this.CalculateEquipmentCost(_toolBoxBoolean, COST_OF_TOOL_BOX_DECIMAL) +
+            this.TotalCost += this.CalculateEquipmentCost(_toolBoxBoolean, COST_OF_TOOL_BOX_DECIMAL) +
                 this.CalculateEquipmentCost(_computerConnectionBoolean, COST_OF_COMPUTER_CONNECTION_DECIMAL) +
                 this.CalculateEquipmentCost(_scannerBoolean, COST_OF_SCANNER_DECIMAL);
 

@@ -76,7 +76,7 @@ namespace cis237_assignment_3
             base.CalculateTotalCost();
 
             //
-            base.TotalCost += this.CalculateEquipmentCost(_broomBoolean, COST_OF_BROOM_DECIMAL) +
+            this.TotalCost += this.CalculateEquipmentCost(_broomBoolean, COST_OF_BROOM_DECIMAL) +
                 this.CalculateEquipmentCost(_vacuumBoolean, COST_OF_VACUUM_DECIMAL);
 
         }
